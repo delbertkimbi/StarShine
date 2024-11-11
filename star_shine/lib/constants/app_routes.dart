@@ -1,7 +1,10 @@
 // routes.dart
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:star_shine/screens/artist_homescreen.dart';
+import 'package:star_shine/screens/artist_signup.dart';
+import 'package:star_shine/screens/fan_home_screen.dart';
 import 'package:star_shine/screens/splash_screen.dart';
+import 'package:star_shine/screens/user_signup.dart';
 import 'package:star_shine/screens/usertype_selection_screen.dart';
 
 class AppRoutes {
@@ -18,12 +21,12 @@ class AppRoutes {
     return {
       splash: (context) => const SplashScreen(), // You'll need to create this
       userTypeSelection: (context) => const UserTypeSelectionScreen(),
-      // fanLogin: (context) => const FanLoginScreen(), // You'll need to create this
-      // artistLogin: (context) => const ArtistLoginScreen(), // You'll need to create this
-      // fanRegistration: (context) => const FanRegistrationScreen(), // You'll need to create this
-      // artistRegistration: (context) => const ArtistRegistrationScreen(), // You'll need to create this
-      // fanHome: (context) => const FanHomeScreen(),
-      // artistHome: (context) => const ArtistHomeScreen(), // You'll need to create this
+      fanLogin: (context) => const UserSignUp(),
+      artistLogin: (context) => const ArtistSignUp(),
+      fanRegistration: (context) => const UserSignUp(),
+      artistRegistration: (context) => const ArtistSignUp(),
+      fanHome: (context) => const FanHomeScreen(),
+      artistHome: (context) => const ArtistHomeScreen(),
     };
   }
 }

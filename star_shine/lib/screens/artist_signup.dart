@@ -1,5 +1,5 @@
 // lib/screens/artist_signup.dart
-import 'package:flutter/material.dart';
+import /**/'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:star_shine/controllers/auth_controller.dart';
 import 'package:star_shine/screens/main_screen.dart';
