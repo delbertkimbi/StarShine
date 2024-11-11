@@ -18,7 +18,7 @@ class UserTypeSelectionScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 60),
               Text(
-                "Welcome to\nMusicConnect",
+                "Welcome to\nPablow",
                 style: GoogleFonts.poppins(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
