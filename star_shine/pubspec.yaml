@@ -42,8 +42,8 @@ dependencies:
   modal_bottom_sheet: ^3.0.0
   font_awesome_flutter: ^10.8.0
   youtube_player_flutter: ^9.1.1
-#  firebase_core: ^3.7.0
-#  firebase_auth: ^5.3.2
+  firebase_core: ^3.7.0
+  firebase_auth: ^5.3.2
 
 dev_dependencies:
   flutter_test:

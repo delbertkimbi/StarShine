@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:star_shine/constants/app_constants.dart';
 import 'package:star_shine/widgets/challenge_card.dart';
-import 'package:star_shine/widgets/video_card.dart';
 import 'package:star_shine/widgets/youtube_widget.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class FeedScreen extends StatelessWidget {
   const FeedScreen({super.key});

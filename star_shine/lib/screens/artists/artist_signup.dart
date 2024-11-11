@@ -13,10 +13,10 @@ class ArtistSignUp extends StatelessWidget {
     final TextEditingController nameController = TextEditingController();
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
-    // final TextEditingController genreController = TextEditingController();
-    // final TextEditingController bioController = TextEditingController();
-    // final TextEditingController locationController = TextEditingController();
-    // final TextEditingController websiteController = TextEditingController();
+    final TextEditingController genreController = TextEditingController();
+    final TextEditingController bioController = TextEditingController();
+    final TextEditingController locationController = TextEditingController();
+    final TextEditingController websiteController = TextEditingController();
     final TextEditingController socialMediaController = TextEditingController();
 
     final List<String> musicGenres = [
