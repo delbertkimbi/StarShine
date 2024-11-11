@@ -157,11 +157,27 @@ class ArtistSignUp extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             const SizedBox(height: 16),
+<<<<<<< HEAD
+            Row(
+              children: [
+                Text(
+                  "Already have an account? ",
+                  style: TextStyle(color: Colors.black87),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Get.toNamed('/artist-login');
+                  },
+                  child: const Text('Log in'),
+                ),
+              ],
+=======
             TextButton(
               onPressed: () {
                 Get.toNamed('/artist-login');
               },
               child: const Text('Already have an account? Log in'),
+>>>>>>> 680a16a3cfee2efc612a1917d92c8b12d3724cbf
             ),
             const SizedBox(height: 25),
           ],
