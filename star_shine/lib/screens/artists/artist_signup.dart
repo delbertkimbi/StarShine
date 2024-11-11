@@ -1,6 +1,7 @@
 // lib/screens/artist_signup.dart
 import /**/'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:star_shine/constants/app_constants.dart';
 import 'package:star_shine/controllers/auth_controller.dart';
 import 'package:star_shine/screens/main_screen.dart';
 
@@ -43,7 +44,7 @@ class ArtistSignUp extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Join MelodiWave and connect with your fans',
+              'Join ${AppConstants.appName} and connect with your Fans',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: const Color(0xFF4ECDC4),
                   ),

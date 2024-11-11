@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:star_shine/constants/app_constants.dart';
 import 'package:star_shine/constants/app_routes.dart';
 import 'package:star_shine/screens/feed_screen.dart';
 import 'package:star_shine/screens/splash_screen.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'MelodiWave',
+      title: AppConstants.appName,
       theme: ThemeData(
         fontFamily: GoogleFonts.poppins().fontFamily,
         primaryColor: const Color(0xFF4ECDC4),
