@@ -20,7 +20,7 @@ class ArtistSignUp extends StatelessWidget {
     final TextEditingController socialMediaController = TextEditingController();
 
     final List<String> musicGenres = [
-      'Pop', 'Rock', 'Hip Hop', 'R&B', 'Jazz', 'Classical',
+      'Makossa', 'Bikutsi', 'Reggae', 'R&B', 'Jazz', 'Classical',
       'Electronic', 'Country', 'Folk', 'Latin', 'Metal',
       'Blues', 'Reggae', 'World Music', 'Alternative'
     ];

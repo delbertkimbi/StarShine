@@ -17,14 +17,14 @@ class MainScreen extends StatelessWidget {
     final screens = [
       const FeedScreen(),
       if (authController.isArtist) const UploadScreen(),
-      const ProfileScreen(),
+      const ArtistProfileScreen(),
     ];
 
     return Scaffold(
       body: Obx(() => IndexedStack(
         index: currentIndex.value,
         children: screens,
-      )),
+      )), 
       bottomNavigationBar: Obx(() => BottomNavigationBar(
         currentIndex: currentIndex.value,
         onTap: (index) => currentIndex.value = index,
