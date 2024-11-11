@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:star_shine/screens/artist_signup.dart';
 
 class UserTypeSelectionScreen extends StatelessWidget {
   const UserTypeSelectionScreen({super.key});
