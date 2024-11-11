@@ -46,8 +46,7 @@ class UserTypeSelectionScreen extends StatelessWidget {
                   Colors.deepOrange.shade400,
                 ],
                 onTap: () {
-                  Navigator.pushNamed(context, '/artist-registration');
-                  Get.to(const ArtistSignUp());
+                  Get.toNamed('/artist-registration');
                 },
               ),
               const SizedBox(height: 24),
@@ -61,7 +60,7 @@ class UserTypeSelectionScreen extends StatelessWidget {
                   Colors.orange.shade500,
                 ],
                 onTap: () {
-                  Navigator.pushNamed(context, '/fan-registration');
+                  Get.toNamed('/fan-registration');
                 },
               ),
             ],
