@@ -13,6 +13,17 @@ class ArtistSignUp extends StatelessWidget {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
     final TextEditingController genreController = TextEditingController();
+    final TextEditingController bioController = TextEditingController();
+    final TextEditingController locationController = TextEditingController();
+    final TextEditingController websiteController = TextEditingController();
+    final TextEditingController socialMediaController = TextEditingController();
+
+    final List<String> musicGenres = [
+      'Pop', 'Rock', 'Hip Hop', 'R&B', 'Jazz', 'Classical',
+      'Electronic', 'Country', 'Folk', 'Latin', 'Metal',
+      'Blues', 'Reggae', 'World Music', 'Alternative'
+    ];
+    String selectedGenre = musicGenres[0];
 
     return Scaffold(
       appBar: AppBar(title: const Text('Artist Sign Up')),
@@ -37,7 +48,31 @@ class ArtistSignUp extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
+
             const SizedBox(height: 24),
+
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 50,
+                  backgroundColor: Colors.grey[300],
+                  child: const Icon(Icons.person, size: 50),
+                ),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: CircleAvatar(
+                    backgroundColor: Theme.of(context).primaryColor,
+                    radius: 18,
+                    child: const Icon(Icons.camera_alt, size: 18),
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 32),
+
             TextField(
               controller: nameController,
               decoration: const InputDecoration(
@@ -45,6 +80,7 @@ class ArtistSignUp extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
+
             const SizedBox(height: 16),
             TextField(
               controller: emailController,
@@ -64,14 +100,44 @@ class ArtistSignUp extends StatelessWidget {
               obscureText: true,
             ),
             const SizedBox(height: 16),
-            TextField(
-              controller: genreController,
-              decoration: const InputDecoration(
+            const SizedBox(height: 16),
+            DropdownButtonFormField<String>(
+              value: selectedGenre,
+              decoration: InputDecoration(
                 labelText: 'Primary Genre',
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                filled: true,
+                fillColor: Colors.white,
               ),
+              items: musicGenres.map((String genre) {
+                return DropdownMenuItem(
+                  value: genre,
+                  child: Text(genre),
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                if (newValue != null) {
+                  selectedGenre = newValue;
+                }
+              },
             ),
             const SizedBox(height: 24),
+            TextField(
+              controller: socialMediaController,
+              decoration: InputDecoration(
+                labelText: 'Social Media Links',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                filled: true,
+                fillColor: Colors.white,
+              ),
+            ),
+
+            const SizedBox(height: 24),
+
             ElevatedButton(
               onPressed: () {
                 authController.setUserType(true);
@@ -84,9 +150,10 @@ class ArtistSignUp extends StatelessWidget {
               child: const Text('Sign Up'),
             ),
             const SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextButton(
               onPressed: () {
-                // TODO: Navigate to login screen
+               Get.toNamed('/artist-login');
               },
               child: const Text('Already have an account? Log in'),
             ),

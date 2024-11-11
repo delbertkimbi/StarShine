@@ -1,6 +1,7 @@
 // routes.dart
 import 'package:flutter/material.dart';
 import 'package:star_shine/screens/artist_homescreen.dart';
+import 'package:star_shine/screens/artist_login_screen.dart';
 import 'package:star_shine/screens/artist_signup.dart';
 import 'package:star_shine/screens/fan_home_screen.dart';
 import 'package:star_shine/screens/splash_screen.dart';
@@ -22,7 +23,7 @@ class AppRoutes {
       splash: (context) => const SplashScreen(), // You'll need to create this
       userTypeSelection: (context) => const UserTypeSelectionScreen(),
       fanLogin: (context) => const UserSignUp(),
-      artistLogin: (context) => const ArtistSignUp(),
+      artistLogin: (context) => const ArtistLogin(),
       fanRegistration: (context) => const UserSignUp(),
       artistRegistration: (context) => const ArtistSignUp(),
       fanHome: (context) => const FanHomeScreen(),
