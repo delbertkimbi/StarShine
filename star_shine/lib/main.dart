@@ -5,11 +5,19 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:star_shine/constants/app_constants.dart';
 import 'package:star_shine/constants/app_routes.dart';
-import 'package:star_shine/screens/feed_screen.dart';
-import 'package:star_shine/screens/splash_screen.dart';
+import 'package:star_shine/game/game_controller.dart';
+import 'package:star_shine/game/audio_controller.dart';
+import 'package:star_shine/game/game_screen.dart';
+import 'package:star_shine/game/pages/game_page.dart';
 
 void main() {
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // Initialize controllers
+  final audioController = AudioController();
+  Get.put(audioController);
+  Get.put(GameController(audioController: Get.find()));
+  
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -49,6 +57,8 @@ class MyApp extends StatelessWidget {
           bodyLarge: TextStyle(color: Colors.black87),
           bodyMedium: TextStyle(color: Colors.black87),
           bodySmall: TextStyle(color: Colors.black54),
+        ).apply(
+          fontFamily: 'Roboto',
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
@@ -80,7 +90,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const FeedScreen(),
+      home: GameScreen(),
       initialRoute: AppRoutes.splash,
       routes: AppRoutes.getRoutes(),
     );
