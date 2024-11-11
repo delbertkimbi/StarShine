@@ -1,13 +1,19 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:star_shine/screens/artist_landing.dart';
+import 'package:star_shine/constants/app_routes.dart';
 import 'package:star_shine/screens/splash_screen.dart';
-import 'package:star_shine/screens/upload_profile.dart';
-import 'package:star_shine/screens/user_signup.dart';
 
 void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
   runApp(const MyApp());
 }
 
@@ -25,6 +31,16 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF4ECDC4),
           error: Colors.red,
+        ),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          iconTheme: const IconThemeData(color: Colors.black87),
+          titleTextStyle: GoogleFonts.poppins(
+            color: Colors.black87,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         scaffoldBackgroundColor: Colors.white,
         textTheme: const TextTheme(
@@ -63,6 +79,8 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: const SplashScreen(),
+      initialRoute: AppRoutes.splash,
+      routes: AppRoutes.getRoutes(),
     );
   }
 }
