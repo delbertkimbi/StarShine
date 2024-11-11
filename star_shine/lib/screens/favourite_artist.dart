@@ -53,7 +53,6 @@ class FavoriteArtists extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {
                 if (selectedArtists.isNotEmpty) {
-
                   Get.offAll(() => const MainScreen());
                 } else {
                   Get.snackbar(
