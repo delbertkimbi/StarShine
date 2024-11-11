@@ -1,5 +1,5 @@
 // lib/screens/artist_signup.dart
-import /**/'package:flutter/material.dart';
+import /**/ 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:star_shine/constants/app_constants.dart';
 import 'package:star_shine/controllers/auth_controller.dart';
@@ -20,9 +20,21 @@ class ArtistSignUp extends StatelessWidget {
     final TextEditingController socialMediaController = TextEditingController();
 
     final List<String> musicGenres = [
-      'Makossa', 'Bikutsi', 'Afrobeat', 'Amapiano', 'Ndombolo',
-      'Afropop', 'Afro-jazz', 'Bendskin', 'Highlife', 'Gospel',
-      'Soukous', 'Hiplife', 'Reggae', 'Hip Hop', 'R&B'
+      'Makossa',
+      'Bikutsi',
+      'Afrobeat',
+      'Amapiano',
+      'Ndombolo',
+      'Afropop',
+      'Afro-jazz',
+      'Bendskin',
+      'Highlife',
+      'Gospel',
+      'Soukous',
+      'Hiplife',
+      'Reggae',
+      'Hip Hop',
+      'R&B'
     ];
     String selectedGenre = musicGenres[0];
 
@@ -49,9 +61,7 @@ class ArtistSignUp extends StatelessWidget {
                   ),
               textAlign: TextAlign.center,
             ),
-
             const SizedBox(height: 24),
-
             Stack(
               alignment: Alignment.center,
               children: [
@@ -71,9 +81,7 @@ class ArtistSignUp extends StatelessWidget {
                 ),
               ],
             ),
-
             const SizedBox(height: 32),
-
             TextField(
               controller: nameController,
               decoration: const InputDecoration(
@@ -81,7 +89,6 @@ class ArtistSignUp extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
-
             const SizedBox(height: 16),
             TextField(
               controller: emailController,
@@ -136,9 +143,7 @@ class ArtistSignUp extends StatelessWidget {
                 fillColor: Colors.white,
               ),
             ),
-
             const SizedBox(height: 24),
-
             ElevatedButton(
               onPressed: () {
                 authController.setUserType(true);
@@ -152,13 +157,20 @@ class ArtistSignUp extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             const SizedBox(height: 16),
-            TextButton(
-              onPressed: () {
-               Get.toNamed('/artist-login');
-              },
-              child: const Text('Already have an account? Log in'),
+            Row(
+              children: [
+                Text(
+                  "Already have an account? ",
+                  style: TextStyle(color: Colors.black87),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Get.toNamed('/artist-login');
+                  },
+                  child: const Text('Log in'),
+                ),
+              ],
             ),
-
             const SizedBox(height: 25),
           ],
         ),
