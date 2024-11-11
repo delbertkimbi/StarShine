@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             const SizedBox(height: 24),
             Text(
-              'MelodiWave',
+              'Pablow',
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     color: Theme.of(context).primaryColor,
                     fontWeight: FontWeight.bold,
