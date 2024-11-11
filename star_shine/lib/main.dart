@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const UploadScreen(),
+      home: const SplashScreen(),
     );
   }
 }
