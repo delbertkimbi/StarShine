@@ -6,8 +6,11 @@ import 'package:star_shine/screens/artists/artist_login_screen.dart';
 import 'package:star_shine/screens/artists/artist_notifications.dart';
 import 'package:star_shine/screens/artists/artist_settings_screen.dart';
 import 'package:star_shine/screens/artists/artist_signup.dart';
+import 'package:star_shine/screens/challenges/challenge_creation.dart';
 import 'package:star_shine/screens/fan_home_screen.dart';
+import 'package:star_shine/screens/favourite_artist.dart';
 import 'package:star_shine/screens/splash_screen.dart';
+import 'package:star_shine/screens/user_login.dart';
 import 'package:star_shine/screens/user_signup.dart';
 import 'package:star_shine/screens/usertype_selection_screen.dart';
 
@@ -15,15 +18,18 @@ class AppRoutes {
   static const String splash = '/splash';
   static const String userTypeSelection = '/user-type-selection';
   static const String fanLogin = '/fan-login';
-  static const String fanRegistration = '/fan-registration';
+  static const String userRegistration = '/user-registration';
   static const String fanHome = '/fan-home';
+  static const String userLogin = '/user-login';
 
   static const String artistLanding = '/artist-landing';
   static const String artistHome = '/artist-home';
+  static const String createChallengeScreen = '/artist/create-challenge-screen';
   static const String artistLogin = '/artist-login';
   static const String artistNotifications = '/artist-notification';
   static const String artistRegistration = '/artist-registration';
   static const String artistSettings = '/artist-settings';
+  static const String favoriteArtists = '/favorite-artists';
 
   static Map<String, WidgetBuilder> getRoutes() {
     return {
@@ -32,12 +38,15 @@ class AppRoutes {
       fanLogin: (context) => const UserSignUp(),
       artistLanding: (context) => const ArtistLanding(),
       artistLogin: (context) => const ArtistLogin(),
-      fanRegistration: (context) => const UserSignUp(),
+      userRegistration: (context) => const UserSignUp(),
       artistRegistration: (context) => const ArtistSignUp(),
       fanHome: (context) => const FanHomeScreen(),
       artistHome: (context) => const ArtistHomeScreen(),
       artistSettings: (context) => const ArtistSettingsScreen(),
       artistNotifications: (context) => const ArtistNotificationScreen(),
+      userLogin: (context) => const UserLogin(),
+      createChallengeScreen: (context) => const CreateChallengeScreen(),
+      favoriteArtists: (context) => const FavoriteArtists()
     };
   }
 }

@@ -3,7 +3,6 @@ import /**/'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:star_shine/constants/app_constants.dart';
 import 'package:star_shine/controllers/auth_controller.dart';
-import 'package:star_shine/screens/main_screen.dart';
 
 class ArtistSignUp extends StatelessWidget {
   const ArtistSignUp({super.key});
@@ -14,16 +13,16 @@ class ArtistSignUp extends StatelessWidget {
     final TextEditingController nameController = TextEditingController();
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
-    final TextEditingController genreController = TextEditingController();
-    final TextEditingController bioController = TextEditingController();
-    final TextEditingController locationController = TextEditingController();
-    final TextEditingController websiteController = TextEditingController();
+    // final TextEditingController genreController = TextEditingController();
+    // final TextEditingController bioController = TextEditingController();
+    // final TextEditingController locationController = TextEditingController();
+    // final TextEditingController websiteController = TextEditingController();
     final TextEditingController socialMediaController = TextEditingController();
 
     final List<String> musicGenres = [
-      'Pop', 'Rock', 'Hip Hop', 'R&B', 'Jazz', 'Classical',
-      'Electronic', 'Country', 'Folk', 'Latin', 'Metal',
-      'Blues', 'Reggae', 'World Music', 'Alternative'
+      'Makossa', 'Bikutsi', 'Afrobeat', 'Amapiano', 'Ndombolo',
+      'Afropop', 'Afro-jazz', 'Bendskin', 'Highlife', 'Gospel',
+      'Soukous', 'Hiplife', 'Reggae', 'Hip Hop', 'R&B'
     ];
     String selectedGenre = musicGenres[0];
 
@@ -144,7 +143,7 @@ class ArtistSignUp extends StatelessWidget {
               onPressed: () {
                 authController.setUserType(true);
                 authController.login();
-                Get.offAll(() => const MainScreen());
+                Get.offAllNamed('/artist-home');
               },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
@@ -159,6 +158,8 @@ class ArtistSignUp extends StatelessWidget {
               },
               child: const Text('Already have an account? Log in'),
             ),
+
+            const SizedBox(height: 25),
           ],
         ),
       ),

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:star_shine/constants/app_constants.dart';
 import 'package:star_shine/controllers/auth_controller.dart';
 import 'package:star_shine/screens/artists/artist_signup.dart';
-import 'package:star_shine/screens/main_screen.dart';
 
 class ArtistLogin extends StatelessWidget {
   const ArtistLogin({super.key});
@@ -102,7 +101,7 @@ class ArtistLogin extends StatelessWidget {
                   onPressed: () {
                     authController.setUserType(true);
                     authController.login();
-                    Get.offAll(() => const MainScreen());
+                    Get.offAllNamed('/artist-home');
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
