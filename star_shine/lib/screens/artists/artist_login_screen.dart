@@ -42,17 +42,17 @@ class ArtistLogin extends StatelessWidget {
                 Text(
                   'Welcome Back',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Sign in to continue creating music',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: const Color(0xFF4ECDC4),
-                  ),
+                        color: const Color(0xFF4ECDC4),
+                      ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 48),
