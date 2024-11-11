@@ -26,36 +26,36 @@ class MainScreen extends StatelessWidget {
 
     return Scaffold(
       body: Obx(() => IndexedStack(
-        index: currentIndex.value,
-        children: screens,
-      )), 
+            index: currentIndex.value,
+            children: screens,
+          )),
       bottomNavigationBar: Obx(() => BottomNavigationBar(
-        currentIndex: currentIndex.value,
-        onTap: (index) => currentIndex.value = index,
-        items: [
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Feed',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: 'Artists',
-          ),
-          if (authController.isArtist)
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.add_circle_outline),
-              label: 'Upload',
-            ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.group),
-            label: 'Followers',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-      )),
+            currentIndex: currentIndex.value,
+            onTap: (index) => currentIndex.value = index,
+            items: [
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Feed',
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.people),
+                label: 'Artists',
+              ),
+              if (authController.isArtist)
+                const BottomNavigationBarItem(
+                  icon: Icon(Icons.add_circle_outline),
+                  label: 'Upload',
+                ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.group),
+                label: 'Followers',
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: 'Profile',
+              ),
+            ],
+          )),
     );
   }
 }

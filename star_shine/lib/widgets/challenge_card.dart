@@ -1,21 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:star_shine/widgets/challengedatailspage.dart';
 
-class ChallengeCard extends StatefulWidget {
+class Challenge {
+  final String id;
   final String title;
-  final String artist;
-  final String thumbnailUrl;
+  final String artistName;
+  final String artistImageUrl;
+  final String description;
+  final String prizeDescription;
+  final String videoUrl;
+  final String audioUrl;
   final int participants;
   final int daysLeft;
+  final String thumbnailUrl;
+  final DateTime endDate;
+  final List<String> rules;
+  final double prizeMoney;
+
+  Challenge({
+    required this.id,
+    required this.title,
+    required this.artistName,
+    required this.artistImageUrl,
+    required this.description,
+    required this.prizeDescription,
+    required this.videoUrl,
+    required this.audioUrl,
+    required this.participants,
+    required this.daysLeft,
+    required this.thumbnailUrl,
+    required this.endDate,
+    required this.rules,
+    required this.prizeMoney,
+  });
+}
+
+class ChallengeCard extends StatefulWidget {
+  final Challenge challenge;
 
   const ChallengeCard({
     super.key,
-    required this.title,
-    required this.artist,
-    required this.thumbnailUrl,
-    required this.participants,
-    required this.daysLeft,
+    required this.challenge,
   });
 
   @override
@@ -81,14 +108,14 @@ class _ChallengeCardState extends State<ChallengeCard>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Hero(
-                      tag: 'challenge-${widget.thumbnailUrl}',
+                      tag: 'challenge-${widget.challenge.id}',
                       child: ClipRRect(
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(20),
                           bottomLeft: Radius.circular(20),
                         ),
                         child: CachedNetworkImage(
-                          imageUrl: widget.thumbnailUrl,
+                          imageUrl: widget.challenge.thumbnailUrl,
                           height: 140,
                           width: 140,
                           fit: BoxFit.cover,
@@ -112,7 +139,7 @@ class _ChallengeCardState extends State<ChallengeCard>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              widget.title,
+                              widget.challenge.title,
                               style: GoogleFonts.poppins(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
@@ -121,7 +148,7 @@ class _ChallengeCardState extends State<ChallengeCard>
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              widget.artist,
+                              widget.challenge.artistName,
                               style: GoogleFonts.inter(
                                 fontSize: 14,
                                 color: Colors.grey[600],
@@ -133,13 +160,13 @@ class _ChallengeCardState extends State<ChallengeCard>
                               children: [
                                 _buildInfoChip(
                                   Icons.people,
-                                  '${widget.participants}',
+                                  '${widget.challenge.participants}',
                                   'participants',
                                 ),
                                 const SizedBox(height: 12),
                                 _buildInfoChip(
                                   Icons.timer,
-                                  '${widget.daysLeft}',
+                                  '${widget.challenge.daysLeft}',
                                   'days left',
                                 ),
                               ],
@@ -147,7 +174,25 @@ class _ChallengeCardState extends State<ChallengeCard>
                             const SizedBox(height: 16),
                             ElevatedButton(
                               onPressed: () {
-                                // TODO: Implement join challenge logic
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ChallengeDetailsPage(
+                                      challenge: widget.challenge,
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                ChallengeDetailsPage(
+                                              challenge: widget.challenge,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                );
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.orange.shade400,
