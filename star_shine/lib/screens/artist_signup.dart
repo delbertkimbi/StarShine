@@ -74,7 +74,6 @@ class ArtistSignUp extends StatelessWidget {
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: () {
-                // TODO: Implement sign up logic
                 authController.setUserType(true);
                 authController.login();
                 Get.offAll(() => const MainScreen());
