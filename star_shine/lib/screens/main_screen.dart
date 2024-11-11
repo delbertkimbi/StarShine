@@ -24,7 +24,7 @@ class MainScreen extends StatelessWidget {
       body: Obx(() => IndexedStack(
         index: currentIndex.value,
         children: screens,
-      )),
+      )), 
       bottomNavigationBar: Obx(() => BottomNavigationBar(
         currentIndex: currentIndex.value,
         onTap: (index) => currentIndex.value = index,
