@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:star_shine/constants/app_constants.dart';
 import 'package:star_shine/controllers/auth_controller.dart';
 import 'package:star_shine/screens/favourite_artist.dart';
 
@@ -32,7 +33,7 @@ class UserSignUp extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Join MelodiWave and discover amazing Cameroonian music',
+              'Join ${AppConstants.appName} and discover amazing Cameroonian music',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: Theme.of(context).primaryColor,
               ),

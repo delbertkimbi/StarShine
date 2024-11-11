@@ -129,14 +129,14 @@ class _ChallengeCardState extends State<ChallengeCard>
                               ),
                             ),
                             const SizedBox(height: 12),
-                            Row(
+                            Column(
                               children: [
                                 _buildInfoChip(
                                   Icons.people,
                                   '${widget.participants}',
                                   'participants',
                                 ),
-                                const SizedBox(width: 12),
+                                const SizedBox(height: 12),
                                 _buildInfoChip(
                                   Icons.timer,
                                   '${widget.daysLeft}',
