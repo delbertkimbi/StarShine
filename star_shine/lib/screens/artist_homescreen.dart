@@ -1,6 +1,7 @@
 // artist_home_screen.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
 
 class ArtistHomeScreen extends StatelessWidget {
   const ArtistHomeScreen({super.key});
@@ -20,13 +21,13 @@ class ArtistHomeScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
             onPressed: () {
-              // Implement notifications
+              Get.toNamed('/artist-notification');
             },
           ),
           IconButton(
             icon: const Icon(Icons.settings_outlined),
             onPressed: () {
-              // Implement settings
+              Get.toNamed('/artist-settings');
             },
           ),
         ],
@@ -403,7 +404,7 @@ class ArtistHomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '1. New York\n2. London\n3. Tokyo',
+                    '1. Douala\n2. Buea\n3. Garoua',
                     style: GoogleFonts.inter(
                       fontSize: 14,
                       color: Colors.grey[600],

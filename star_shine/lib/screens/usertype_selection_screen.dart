@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:star_shine/screens/artist_signup.dart';
 
 class UserTypeSelectionScreen extends StatelessWidget {
   const UserTypeSelectionScreen({super.key});
@@ -18,7 +17,7 @@ class UserTypeSelectionScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 60),
               Text(
-                "Welcome to\nMusicConnect",
+                "Welcome to\nPablow",
                 style: GoogleFonts.poppins(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,

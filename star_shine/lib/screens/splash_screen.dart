@@ -46,9 +46,15 @@ class _SplashScreenState extends State<SplashScreen> {
                     child: Container(
                       width: 50,
                       height: 50,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(0xFF4ECDC4),
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.orange.shade500,
+                            Colors.orange.shade300,
+                          ],
+                        ),
+                        // color: Color(0xFF4ECDC4),
                       ),
                     ),
                   ),
@@ -57,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             const SizedBox(height: 24),
             Text(
-              'MelodiWave',
+              'Pablow',
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     color: Theme.of(context).primaryColor,
                     fontWeight: FontWeight.bold,
