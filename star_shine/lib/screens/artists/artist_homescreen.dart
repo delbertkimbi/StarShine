@@ -53,7 +53,7 @@ class ArtistHomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          // Implement new challenge/content creation
+          Get.toNamed('/artist/create-challenge-screen');
         },
         icon: const Icon(Icons.add),
         label: Text(

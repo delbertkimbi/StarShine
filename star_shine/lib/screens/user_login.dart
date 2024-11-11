@@ -4,26 +4,27 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:star_shine/constants/app_constants.dart';
 import 'package:star_shine/controllers/auth_controller.dart';
+import 'package:star_shine/screens/favourite_artist.dart';
 
-class UserSignUp extends StatelessWidget {
-  const UserSignUp({super.key});
+class UserLogin extends StatelessWidget {
+  const UserLogin({super.key});
 
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.put(AuthController());
-    final TextEditingController usernameController = TextEditingController();
+    // final TextEditingController usernameController = TextEditingController();
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('User Sign Up')),
+      appBar: AppBar(title: const Text('User Login')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Create your account',
+              'Login to your account',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: const Color(0xFF2F2F2F),
@@ -39,14 +40,7 @@ class UserSignUp extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),
-            TextField(
-              controller: usernameController,
-              decoration: const InputDecoration(
-                labelText: 'Username',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 16),
+
             TextField(
               controller: emailController,
               decoration: const InputDecoration(
@@ -70,15 +64,12 @@ class UserSignUp extends StatelessWidget {
                 // TODO: Implement sign up logic
                 authController.setUserType(false);
                 authController.login();
-
-                // show this only when the user is logging in for the first time.
-                Get.toNamed('/favorite-artists');
-
+                Get.to(() => const FavoriteArtists());
               },
               child: const Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('Sign Up'),
+                  Text('Login'),
                   SizedBox(width: 8),
                   Icon(Icons.arrow_forward, size: 16),
                 ],
@@ -92,16 +83,16 @@ class UserSignUp extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  "Already have an account?",
+                    "Don't have an account?",
                   style: TextStyle(
-                      color: Colors.black
+                    color: Colors.black
                   ),
                 ),
 
                 TextButton(onPressed: () {
-                  Get.toNamed('/user-login');
+                  Get.toNamed('/user-registration');
                 },
-                    child: const Text("Log in", style: TextStyle(),))
+                child: const Text("Create One", style: TextStyle(),))
               ],
             ),
           ],

@@ -12,14 +12,14 @@ class FavoriteArtists extends StatelessWidget {
     final selectedArtists = <String>[].obs;
 
     final dummyArtists = [
-      {'id': '1', 'name': 'Salatiel', 'imageUrl': 'https://example.com/salatiel.jpg', 'genre': 'Afropop'},
-      {'id': '2', 'name': 'Charlotte Dipanda', 'imageUrl': 'https://example.com/charlotte.jpg', 'genre': 'Folk'},
-      {'id': '3', 'name': 'Locko', 'imageUrl': 'https://example.com/locko.jpg', 'genre': 'R&B'},
-      {'id': '4', 'name': 'Daphne', 'imageUrl': 'https://example.com/daphne.jpg', 'genre': 'Urban'},
-      {'id': '5', 'name': 'Manu Dibango', 'imageUrl': 'https://example.com/manu.jpg', 'genre': 'Jazz'},
-      {'id': '6', 'name': 'Mr. Leo', 'imageUrl': 'https://example.com/mrleo.jpg', 'genre': 'Afrobeats'},
-      {'id': '7', 'name': 'Blanche Bailly', 'imageUrl': 'https://example.com/blanche.jpg', 'genre': 'Afropop'},
-      {'id': '8', 'name': 'Stanley Enow', 'imageUrl': 'https://example.com/stanley.jpg', 'genre': 'Hip Hop'},
+      {'id': '1', 'name': 'Salatiel', 'imageUrl': 'assets/images/artists/salatiel.png', 'genre': 'Afropop'},
+      {'id': '2', 'name': 'Charlotte Dipanda', 'imageUrl': 'assets/images/artists/charllote.png', 'genre': 'Folk'},
+      {'id': '3', 'name': 'Locko', 'imageUrl': 'assets/images/artists/locko.png', 'genre': 'R&B'},
+      {'id': '4', 'name': 'Daphne', 'imageUrl': 'assets/images/artists/daphne.png', 'genre': 'Urban'},
+      {'id': '5', 'name': 'Manu Dibango', 'imageUrl': 'assets/images/artists/dibango.png', 'genre': 'Jazz'},
+      {'id': '6', 'name': 'Mr. Leo', 'imageUrl': 'assets/images/artists/leo.png', 'genre': 'Afrobeats'},
+      {'id': '7', 'name': 'Blanche Bailly', 'imageUrl': 'assets/images/artists/baily.png', 'genre': 'Afropop'},
+      {'id': '8', 'name': 'Stanley Enow', 'imageUrl': 'assets/images/artists/enow.png', 'genre': 'Hip Hop'},
     ];
 
     return Scaffold(
@@ -53,7 +53,7 @@ class FavoriteArtists extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {
                 if (selectedArtists.isNotEmpty) {
-                  // TODO: Save selected artists
+
                   Get.offAll(() => const MainScreen());
                 } else {
                   Get.snackbar(
@@ -64,11 +64,13 @@ class FavoriteArtists extends StatelessWidget {
                 }
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 32),
               ),
               child: const Text('Continue'),
             ),
           ),
+
+          const SizedBox(height: 10),
         ],
       ),
     );
