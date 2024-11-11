@@ -1,8 +1,7 @@
 // lib/screens/splash_screen.dart
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:star_shine/screens/artist_landing.dart';
+import 'package:get/get.dart';
 import 'package:star_shine/screens/usertype_selection_screen.dart';
 
 class SplashScreen extends StatefulWidget {
