@@ -36,17 +36,25 @@ class _SplashScreenState extends State<SplashScreen> {
                   Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(color: Theme.of(context).primaryColor, width: 4),
+                      border: Border.all(
+                          color: Theme.of(context).primaryColor, width: 4),
                     ),
-                  ).animate(onPlay: (controller) => controller.repeat())
-                    .rotate(duration: const Duration(seconds:2 )),
+                  )
+                      .animate(onPlay: (controller) => controller.repeat())
+                      .rotate(duration: const Duration(seconds: 2)),
                   Center(
                     child: Container(
                       width: 50,
                       height: 50,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(0xFF4ECDC4),
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.orange.shade500,
+                            Colors.orange.shade300,
+                          ],
+                        ),
+                        // color: Color(0xFF4ECDC4),
                       ),
                     ),
                   ),
@@ -57,16 +65,16 @@ class _SplashScreenState extends State<SplashScreen> {
             Text(
               'MelodiWave',
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: Theme.of(context).primaryColor,
-                fontWeight: FontWeight.bold,
-              ),
+                    color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.bold,
+                  ),
             ).animate().fadeIn(duration: 500.ms).slide(),
             const SizedBox(height: 8),
             Text(
               'Ride the wave of Cameroonian music',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: const Color(0xFF2F2F2F),
-              ),
+                    color: const Color(0xFF2F2F2F),
+                  ),
             ).animate().fadeIn(duration: 500.ms, delay: 200.ms).slide(),
           ],
         ),
