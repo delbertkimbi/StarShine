@@ -133,19 +133,22 @@ class ArtistHomeScreen extends StatelessWidget {
               color: Colors.white.withOpacity(0.2),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Row(
-              children: [
-                const Icon(Icons.trending_up, color: Colors.white),
-                const SizedBox(width: 12),
-                Text(
-                  '+15% Growth in followers this month',
-                  style: GoogleFonts.inter(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
+            child:SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  const Icon(Icons.trending_up, color: Colors.white),
+                  const SizedBox(width: 12),
+                  Text(
+                    '+15% Growth in followers this month',
+                    style: GoogleFonts.inter(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+            )
           ),
         ],
       ),
