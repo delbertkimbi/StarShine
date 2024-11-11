@@ -1,11 +1,11 @@
 // routes.dart
 import 'package:flutter/material.dart';
-import 'package:star_shine/screens/artist_homescreen.dart';
-import 'package:star_shine/screens/artist_landing.dart';
-import 'package:star_shine/screens/artist_login_screen.dart';
-import 'package:star_shine/screens/artist_signup.dart';
+import 'package:star_shine/screens/artists/artist_homescreen.dart';
+import 'package:star_shine/screens/artists/artist_landing.dart';
+import 'package:star_shine/screens/artists/artist_login_screen.dart';
 import 'package:star_shine/screens/artists/artist_notifications.dart';
 import 'package:star_shine/screens/artists/artist_settings_screen.dart';
+import 'package:star_shine/screens/artists/artist_signup.dart';
 import 'package:star_shine/screens/fan_home_screen.dart';
 import 'package:star_shine/screens/splash_screen.dart';
 import 'package:star_shine/screens/user_signup.dart';

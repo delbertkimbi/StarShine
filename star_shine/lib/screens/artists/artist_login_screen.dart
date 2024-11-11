@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:star_shine/constants/app_constants.dart';
 import 'package:star_shine/controllers/auth_controller.dart';
+import 'package:star_shine/screens/artists/artist_signup.dart';
 import 'package:star_shine/screens/main_screen.dart';
-import 'package:star_shine/screens/artist_signup.dart';
 
 class ArtistLogin extends StatelessWidget {
   const ArtistLogin({super.key});
@@ -121,7 +122,7 @@ class ArtistLogin extends StatelessWidget {
                     Get.to(() => const ArtistSignUp());
                   },
                   child: const Text(
-                    'New to MelodiWave? Create an account',
+                    'New to ${AppConstants.appName}? Create an account',
                     style: TextStyle(color: Color(0xFF4ECDC4)),
                   ),
                 ),

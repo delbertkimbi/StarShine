@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:star_shine/screens/artist_signup.dart';
+import 'package:star_shine/constants/app_constants.dart';
+import 'package:star_shine/screens/artists/artist_signup.dart';
 import 'package:star_shine/screens/user_signup.dart';
 import 'package:star_shine/widgets/feature_card.dart';
 
@@ -13,7 +14,7 @@ class ArtistLanding extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MelodiWave'),
+        title: const Text('Pablow'),
         actions: [
           TextButton.icon(
             onPressed: () => Get.to(() => const ArtistSignUp()),
@@ -44,7 +45,7 @@ class ArtistLanding extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                'Join MelodiWave and connect with fans, boost your visibility, and monetize your talent.',
+                'Join ${AppConstants.appName} and connect with users, boost your visibility, and monetize your talent.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: Theme.of(context).primaryColor,
                 ),
@@ -77,7 +78,7 @@ class ArtistLanding extends StatelessWidget {
                 child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('Join MelodiWave Today'),
+                    Text('Join ${AppConstants.appName} Today'),
                     SizedBox(width: 8),
                     Icon(Icons.music_note, size: 16),
                   ],

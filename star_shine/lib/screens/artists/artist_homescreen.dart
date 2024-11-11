@@ -23,6 +23,7 @@ class ArtistHomeScreen extends StatelessWidget {
             onPressed: () {
               Get.toNamed('/artist-notification');
             },
+            
           ),
           IconButton(
             icon: const Icon(Icons.settings_outlined),

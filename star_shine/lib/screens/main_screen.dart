@@ -17,7 +17,7 @@ class MainScreen extends StatelessWidget {
     final screens = [
       const FeedScreen(),
       if (authController.isArtist) const UploadScreen(),
-      const ProfileScreen(),
+      const ArtistProfileScreen(),
     ];
 
     return Scaffold(

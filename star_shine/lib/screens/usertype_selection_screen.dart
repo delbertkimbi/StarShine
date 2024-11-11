@@ -38,7 +38,7 @@ class UserTypeSelectionScreen extends StatelessWidget {
               _buildSelectionCard(
                 context: context,
                 title: "Join as an Artist",
-                description: "Create content, connect with fans, and monetize your music",
+                description: "Create content, connect with users, and monetize your music",
                 icon: Icons.music_note,
                 gradientColors: [
                   Colors.orange.shade400,
@@ -59,8 +59,7 @@ class UserTypeSelectionScreen extends StatelessWidget {
                   Colors.orange.shade500,
                 ],
                 onTap: () {
-                  // Get.toNamed('/fan-registration');
-                  Get.toNamed('/artist-home');
+                  Get.toNamed('/fan-registration');
                 },
               ),
             ],
