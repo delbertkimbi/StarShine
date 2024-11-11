@@ -42,129 +42,135 @@ class ArtistSignUp extends StatelessWidget {
       appBar: AppBar(title: const Text('Artist Sign Up')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              'Create your artist account',
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xFF2F2F2F),
+        child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/images/artist_signup_bg.png'),
+                  fit: BoxFit.cover)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                'Create your artist account',
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFF2F2F2F),
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Join ${AppConstants.appName} and connect with your Fans',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: const Color(0xFF4ECDC4),
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 24),
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Colors.grey[300],
+                    child: const Icon(Icons.person, size: 50),
                   ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Join ${AppConstants.appName} and connect with your Fans',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: const Color(0xFF4ECDC4),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: CircleAvatar(
+                      backgroundColor: Theme.of(context).primaryColor,
+                      radius: 18,
+                      child: const Icon(Icons.camera_alt, size: 18),
+                    ),
                   ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 24),
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 50,
-                  backgroundColor: Colors.grey[300],
-                  child: const Icon(Icons.person, size: 50),
+                ],
+              ),
+              const SizedBox(height: 32),
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(
+                  labelText: 'Artist/Band Name',
+                  border: OutlineInputBorder(),
                 ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: CircleAvatar(
-                    backgroundColor: Theme.of(context).primaryColor,
-                    radius: 18,
-                    child: const Icon(Icons.camera_alt, size: 18),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(
+                  labelText: 'Email address',
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.emailAddress,
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: passwordController,
+                decoration: const InputDecoration(
+                  labelText: 'Password',
+                  border: OutlineInputBorder(),
+                ),
+                obscureText: true,
+              ),
+              const SizedBox(height: 16),
+              const SizedBox(height: 16),
+              DropdownButtonFormField<String>(
+                value: selectedGenre,
+                decoration: InputDecoration(
+                  labelText: 'Primary Genre',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
                   ),
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
-              ],
-            ),
-            const SizedBox(height: 32),
-            TextField(
-              controller: nameController,
-              decoration: const InputDecoration(
-                labelText: 'Artist/Band Name',
-                border: OutlineInputBorder(),
+                items: musicGenres.map((String genre) {
+                  return DropdownMenuItem(
+                    value: genre,
+                    child: Text(genre),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  if (newValue != null) {
+                    selectedGenre = newValue;
+                  }
+                },
               ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                labelText: 'Email address',
-                border: OutlineInputBorder(),
-              ),
-              keyboardType: TextInputType.emailAddress,
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: passwordController,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
-              ),
-              obscureText: true,
-            ),
-            const SizedBox(height: 16),
-            const SizedBox(height: 16),
-            DropdownButtonFormField<String>(
-              value: selectedGenre,
-              decoration: InputDecoration(
-                labelText: 'Primary Genre',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
+              const SizedBox(height: 24),
+              TextField(
+                controller: socialMediaController,
+                decoration: InputDecoration(
+                  labelText: 'Social Media Links',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
-                filled: true,
-                fillColor: Colors.white,
               ),
-              items: musicGenres.map((String genre) {
-                return DropdownMenuItem(
-                  value: genre,
-                  child: Text(genre),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                if (newValue != null) {
-                  selectedGenre = newValue;
-                }
-              },
-            ),
-            const SizedBox(height: 24),
-            TextField(
-              controller: socialMediaController,
-              decoration: InputDecoration(
-                labelText: 'Social Media Links',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: () {
+                  authController.setUserType(true);
+                  authController.login();
+                  Get.offAllNamed('/artist-home');
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                 ),
-                filled: true,
-                fillColor: Colors.white,
+                child: const Text('Sign Up'),
               ),
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () {
-                authController.setUserType(true);
-                authController.login();
-                Get.offAllNamed('/artist-home');
-              },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
+              const SizedBox(height: 16),
+              const SizedBox(height: 16),
+              TextButton(
+                onPressed: () {
+                  Get.toNamed('/artist-login');
+                },
+                child: const Text('Already have an account? Log in'),
               ),
-              child: const Text('Sign Up'),
-            ),
-            const SizedBox(height: 16),
-            const SizedBox(height: 16),
-            TextButton(
-              onPressed: () {
-                Get.toNamed('/artist-login');
-              },
-              child: const Text('Already have an account? Log in'),
-            ),
-            const SizedBox(height: 25),
-          ],
+              const SizedBox(height: 25),
+            ],
+          ),
         ),
       ),
     );
