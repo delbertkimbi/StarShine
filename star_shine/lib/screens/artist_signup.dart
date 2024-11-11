@@ -3,6 +3,7 @@ import /**/'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:star_shine/controllers/auth_controller.dart';
 import 'package:star_shine/screens/main_screen.dart';
+
 class ArtistSignUp extends StatelessWidget {
   const ArtistSignUp({super.key});
 
@@ -35,17 +36,17 @@ class ArtistSignUp extends StatelessWidget {
             Text(
               'Create your artist account',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: const Color(0xFF2F2F2F),
-              ),
+                    fontWeight: FontWeight.bold,
+                    color: const Color(0xFF2F2F2F),
+                  ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             Text(
               'Join MelodiWave and connect with your fans',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: const Color(0xFF4ECDC4),
-              ),
+                    color: const Color(0xFF4ECDC4),
+                  ),
               textAlign: TextAlign.center,
             ),
 
