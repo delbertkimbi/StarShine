@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:star_shine/constants/app_constants.dart';
 import 'package:star_shine/widgets/challenge_card.dart';
-import 'package:star_shine/widgets/youtube_widget.dart';
+import 'package:star_shine/widgets/video_card.dart';
 
 class FeedScreen extends StatelessWidget {
   const FeedScreen({super.key});
@@ -143,15 +143,12 @@ class FeedScreen extends StatelessWidget {
             itemCount: dummyVideos.length,
             itemBuilder: (context, index) {
               final video = dummyVideos[index];
-              return const YouTubeVideoWidget(
-                videoUrl: 'https://www.youtube.com/watch?v=xb6bvshRbjE',
+              return VideoCard(
+                title: video['title'] as String,
+                artist: video['artist'] as String,
+                thumbnailUrl: video['thumbnailUrl'] as String,
+                views: video['views'] as int,
               );
-              // return VideoCard(
-              //   title: video['title'] as String,
-              //   artist: video['artist'] as String,
-              //   thumbnailUrl: video['thumbnailUrl'] as String,
-              //   views: video['views'] as int,
-              // );
             },
           );
         } else {

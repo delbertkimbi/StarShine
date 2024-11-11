@@ -9,6 +9,8 @@ import 'package:star_shine/screens/artists/artist_signup.dart';
 import 'package:star_shine/screens/challenges/challenge_creation.dart';
 import 'package:star_shine/screens/fan_home_screen.dart';
 import 'package:star_shine/screens/favourite_artist.dart';
+import 'package:star_shine/screens/main_screen.dart';
+import 'package:star_shine/screens/shorts_screen.dart';
 import 'package:star_shine/screens/splash_screen.dart';
 import 'package:star_shine/screens/user_login.dart';
 import 'package:star_shine/screens/user_signup.dart';
@@ -30,6 +32,8 @@ class AppRoutes {
   static const String artistRegistration = '/artist-registration';
   static const String artistSettings = '/artist-settings';
   static const String favoriteArtists = '/favorite-artists';
+  static const String userMainScreen = '/users/mains';
+  static const String shorts = '/shorts';
 
   static Map<String, WidgetBuilder> getRoutes() {
     return {
@@ -46,7 +50,9 @@ class AppRoutes {
       artistNotifications: (context) => const ArtistNotificationScreen(),
       userLogin: (context) => const UserLogin(),
       createChallengeScreen: (context) => const CreateChallengeScreen(),
-      favoriteArtists: (context) => const FavoriteArtists()
+      favoriteArtists: (context) => const FavoriteArtists(),
+      userMainScreen: (context) => const MainScreen(),
+      shorts: (context) => const ShortsScreen(),
     };
   }
 }

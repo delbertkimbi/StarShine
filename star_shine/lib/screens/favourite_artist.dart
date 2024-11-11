@@ -1,7 +1,6 @@
 // lib/screens/favorite_artists.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:star_shine/screens/main_screen.dart';
 import 'package:star_shine/widgets/artist_card.dart';
 
 class FavoriteArtists extends StatelessWidget {
@@ -53,7 +52,7 @@ class FavoriteArtists extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {
                 if (selectedArtists.isNotEmpty) {
-                  Get.offAll(() => const MainScreen());
+                  Get.offNamed('/users/mains');
                 } else {
                   Get.snackbar(
                     'Error',

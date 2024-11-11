@@ -25,7 +25,8 @@ class ArtistsScreen extends StatelessWidget {
           return ListTile(
             leading: const CircleAvatar(
               backgroundImage: NetworkImage(
-                  'https://placekitten.com/200/200'), // Replace with artist profile images
+                  'https://placekitten.com/200/200'
+              ), // Replace with artist profile images
             ),
             title: Text(artists[index]),
             subtitle: Text('Explore content by ${artists[index]}'),
