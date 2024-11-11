@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:star_shine/constants/app_constants.dart';
 import 'package:star_shine/controllers/auth_controller.dart';
 import 'package:star_shine/screens/artists/artist_signup.dart';
-import 'package:star_shine/screens/main_screen.dart';
 
 class ArtistLogin extends StatelessWidget {
   const ArtistLogin({super.key});
@@ -43,17 +42,17 @@ class ArtistLogin extends StatelessWidget {
                 Text(
                   'Welcome Back',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Sign in to continue creating music',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: const Color(0xFF4ECDC4),
-                  ),
+                        color: const Color(0xFF4ECDC4),
+                      ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 48),
@@ -102,7 +101,7 @@ class ArtistLogin extends StatelessWidget {
                   onPressed: () {
                     authController.setUserType(true);
                     authController.login();
-                    Get.offAll(() => const MainScreen());
+                    Get.offAllNamed('/artist-home');
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),

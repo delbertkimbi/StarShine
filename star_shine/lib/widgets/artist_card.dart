@@ -1,7 +1,6 @@
 // lib/widgets/artist_card.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class ArtistCard extends StatelessWidget {
   final String id;
@@ -42,12 +41,7 @@ class ArtistCard extends StatelessWidget {
                   Expanded(
                     child: ClipRRect(
                       borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
-                      child: CachedNetworkImage(
-                        imageUrl: imageUrl,
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) => const Icon(Icons.error),
-                      ),
+                      child: Image.asset(imageUrl, fit: BoxFit.cover)
                     ),
                   ),
                   Padding(
@@ -72,6 +66,7 @@ class ArtistCard extends StatelessWidget {
                   ),
                 ],
               ),
+
               if (isSelected)
                 Positioned(
                   top: 8,
@@ -84,8 +79,7 @@ class ArtistCard extends StatelessWidget {
                 ),
             ],
           ),
-        ),
-      );
-    });
+        )
+    );});
   }
 }

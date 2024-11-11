@@ -1,9 +1,11 @@
-// lib/screens/main_screen.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:star_shine/controllers/auth_controller.dart';
+import 'package:star_shine/screens/artists/artist_show.dart';
+import 'package:star_shine/screens/artists/follower_screen.dart';
 import 'package:star_shine/screens/feed_screen.dart';
 import 'package:star_shine/screens/profile_screen.dart';
+import 'package:star_shine/screens/shorts_screen.dart';
 import 'package:star_shine/screens/upload_profile.dart';
 
 class MainScreen extends StatelessWidget {
@@ -16,7 +18,10 @@ class MainScreen extends StatelessWidget {
 
     final screens = [
       const FeedScreen(),
+      const ShortsScreen(),
+      const ArtistsScreen(),
       if (authController.isArtist) const UploadScreen(),
+      const FollowersScreen(),
       const ArtistProfileScreen(),
     ];
 
@@ -24,26 +29,55 @@ class MainScreen extends StatelessWidget {
       body: Obx(() => IndexedStack(
         index: currentIndex.value,
         children: screens,
-      )), 
-      bottomNavigationBar: Obx(() => BottomNavigationBar(
-        currentIndex: currentIndex.value,
-        onTap: (index) => currentIndex.value = index,
-        items: [
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Feed',
-          ),
-          if (authController.isArtist)
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.add_circle_outline),
-              label: 'Upload',
-            ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
       )),
+      bottomNavigationBar: Theme(
+        data: Theme.of(context).copyWith(
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            backgroundColor: Colors.white,
+            selectedItemColor: Colors.orange,
+            unselectedItemColor: Colors.grey,
+            selectedLabelStyle: TextStyle(
+              color: Colors.black,
+            ),
+            unselectedLabelStyle: TextStyle(
+              color: Colors.grey,
+            ),
+          ),
+        ),
+        child: Obx(() => BottomNavigationBar(
+          currentIndex: currentIndex.value,
+          onTap: (index) {
+            currentIndex.value = index;
+          },
+          items: [
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Feed',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.video_library),
+              label: 'Shorts',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.people),
+              label: 'Artists',
+            ),
+            if (authController.isArtist)
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.add_circle_outline),
+                label: 'Upload',
+              ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.group),
+              label: 'Followers',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profile',
+            ),
+          ],
+        )),
+      ),
     );
   }
 }

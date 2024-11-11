@@ -59,7 +59,7 @@ class UserTypeSelectionScreen extends StatelessWidget {
                   Colors.orange.shade500,
                 ],
                 onTap: () {
-                  Get.toNamed('/fan-registration');
+                  Get.toNamed('/user-registration');
                 },
               ),
             ],

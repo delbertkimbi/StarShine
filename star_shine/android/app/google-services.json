@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "985893525310",
+    "project_id": "star-shine-ccc48",
+    "storage_bucket": "star-shine-ccc48.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985893525310:android:fe5b08a935d4b35fd4fe6f",
+        "android_client_info": {
+          "package_name": "com.kelseafu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpkmh8d1PPUo2DnmrTGaSQSifZ7g1MNd4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
