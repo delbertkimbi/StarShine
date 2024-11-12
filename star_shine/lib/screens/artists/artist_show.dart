@@ -4,6 +4,8 @@ import 'package:star_shine/constants/app_constants.dart';
 import 'package:get/get.dart';
 
 class ArtistScreen extends StatefulWidget {
+  const ArtistScreen({super.key});
+
   @override
   _ArtistScreenState createState() => _ArtistScreenState();
 }
@@ -290,7 +292,7 @@ class _ArtistScreenState extends State<ArtistScreen> with SingleTickerProviderSt
   }
 
   Widget _buildGenreCards() {
-    return Container(
+    return SizedBox(
       height: 120,
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 24),

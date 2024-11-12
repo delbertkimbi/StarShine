@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:video_player/video_player.dart';
 
 class ChallengeCard extends StatefulWidget {
   final String title;
   final String artist;
-  final String thumbnailUrl;
+  final String mediaUrl;
+  final bool isVideo;
   final int participants;
   final int daysLeft;
+  final double prizeAmount;
+  final Function() onJoin;
+  final Function() onShare;
 
   const ChallengeCard({
     super.key,
     required this.title,
     required this.artist,
-    required this.thumbnailUrl,
+    required this.mediaUrl,
+    required this.isVideo,
     required this.participants,
     required this.daysLeft,
+    required this.prizeAmount,
+    required this.onJoin,
+    required this.onShare,
   });
 
   @override
@@ -26,26 +36,89 @@ class _ChallengeCardState extends State<ChallengeCard>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
+  VideoPlayerController? _videoController;
+  bool _isPlaying = false;
 
   @override
   void initState() {
     super.initState();
+    _setupAnimations();
+    if (widget.isVideo) {
+      _initializeVideo();
+    }
+  }
+
+  void _setupAnimations() {
     _controller = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
 
-    _scaleAnimation = Tween<double>(begin: 0.95, end: 1.0).animate(
+    _scaleAnimation = Tween<double>(begin: 0.98, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeOut),
     );
 
     _controller.forward();
   }
 
+  Future<void> _initializeVideo() async {
+    _videoController = VideoPlayerController.network(widget.mediaUrl)
+      ..initialize().then((_) {
+        setState(() {});
+      });
+  }
+
   @override
   void dispose() {
     _controller.dispose();
+    _videoController?.dispose();
     super.dispose();
+  }
+
+  Widget _buildMedia() {
+    if (widget.isVideo && _videoController != null) {
+      return Stack(
+        alignment: Alignment.center,
+        children: [
+          AspectRatio(
+            aspectRatio: _videoController!.value.aspectRatio,
+            child: VideoPlayer(_videoController!),
+          ),
+          IconButton(
+            icon: Icon(
+              _isPlaying ? Icons.pause_circle : Icons.play_circle,
+              size: 50,
+              color: Colors.white.withOpacity(0.8),
+            ),
+            onPressed: () {
+              setState(() {
+                _isPlaying = !_isPlaying;
+                _isPlaying
+                    ? _videoController!.play()
+                    : _videoController!.pause();
+              });
+            },
+          ),
+        ],
+      );
+    } else {
+      return CachedNetworkImage(
+        imageUrl: widget.mediaUrl,
+        height: 200,
+        width: double.infinity,
+        fit: BoxFit.cover,
+        placeholder: (context, url) => Container(
+          color: Colors.grey[200],
+          child: const Center(
+            child: CircularProgressIndicator(),
+          ),
+        ),
+        errorWidget: (context, url, error) => Container(
+          color: Colors.grey[200],
+          child: const Icon(Icons.error),
+        ),
+      );
+    }
   }
 
   @override
@@ -74,87 +147,113 @@ class _ChallengeCardState extends State<ChallengeCard>
               color: Colors.transparent,
               child: InkWell(
                 onTap: () {
-                  // Handle tap with animation
                   _controller.reverse().then((_) => _controller.forward());
                 },
-                child: Row(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Hero(
-                      tag: 'challenge-${widget.thumbnailUrl}',
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          bottomLeft: Radius.circular(20),
-                        ),
-                        child: CachedNetworkImage(
-                          imageUrl: widget.thumbnailUrl,
-                          height: 140,
-                          width: 140,
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) => Container(
-                            color: Colors.grey[200],
-                            child: const Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                          ),
-                          errorWidget: (context, url, error) => Container(
-                            color: Colors.grey[200],
-                            child: const Icon(Icons.error),
-                          ),
-                        ),
-                      ),
+                      tag: 'challenge-${widget.mediaUrl}',
+                      child: _buildMedia(),
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.title,
-                              style: GoogleFonts.poppins(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black87,
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      widget.title,
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      'by ${widget.artist}',
+                                      style: GoogleFonts.inter(
+                                        fontSize: 14,
+                                        color: Colors.grey[600],
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              widget.artist,
-                              style: GoogleFonts.inter(
-                                fontSize: 14,
+                              IconButton(
+                                icon: const Icon(Icons.share_rounded),
+                                onPressed: widget.onShare,
                                 color: Colors.grey[600],
-                                fontWeight: FontWeight.w500,
                               ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 8),
+                            decoration: BoxDecoration(
+                              color: Colors.green.shade50,
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                            const SizedBox(height: 12),
-                            Column(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
-                                _buildInfoChip(
+                                Icon(Icons.monetization_on,
+                                    size: 20, color: Colors.green[700]),
+                                const SizedBox(width: 8),
+                                Text(
+                                  'Prize: \$${widget.prizeAmount.toStringAsFixed(2)}',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.green[700],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: _buildInfoChip(
                                   Icons.people,
                                   '${widget.participants}',
                                   'participants',
                                 ),
-                                const SizedBox(height: 12),
-                                _buildInfoChip(
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: _buildInfoChip(
                                   Icons.timer,
                                   '${widget.daysLeft}',
                                   'days left',
                                 ),
-                              ],
-                            ),
-                            const SizedBox(height: 16),
-                            ElevatedButton(
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
                               onPressed: () {
-                                // TODO: Implement join challenge logic
+                                HapticFeedback.mediumImpact();
+                                widget.onJoin();
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.orange.shade400,
                                 foregroundColor: Colors.white,
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 24,
-                                  vertical: 12,
+                                  vertical: 16,
                                 ),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
@@ -163,12 +262,13 @@ class _ChallengeCardState extends State<ChallengeCard>
                               child: Text(
                                 'Join Challenge',
                                 style: GoogleFonts.inter(
+                                  fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -183,21 +283,22 @@ class _ChallengeCardState extends State<ChallengeCard>
 
   Widget _buildInfoChip(IconData icon, String value, String label) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         color: Colors.orange.shade50,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 16, color: Theme.of(context).primaryColor),
+          Icon(icon, size: 16, color: Colors.orange[700]),
           const SizedBox(width: 6),
           Text(
             '$value $label',
             style: GoogleFonts.inter(
               fontSize: 12,
               fontWeight: FontWeight.w500,
+              color: Colors.orange[700],
             ),
           ),
         ],
