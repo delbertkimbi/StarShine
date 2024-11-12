@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:star_shine/controllers/auth_controller.dart';
 import 'package:star_shine/game/game_screen.dart';
 import 'package:star_shine/screens/artists/artist_show.dart';
-import 'package:star_shine/screens/artists/follower_screen.dart';
 import 'package:star_shine/screens/feed_screen.dart';
 import 'package:star_shine/screens/profile_screen.dart';
 import 'package:star_shine/screens/shorts_screen.dart';
@@ -21,9 +20,8 @@ class MainScreen extends StatelessWidget {
       const FeedScreen(),
       const ShortsScreen(videoId: '',),
       const GameScreen(),
-      const ArtistsScreen(),
+      ArtistScreen(),
       if (authController.isArtist) const UploadScreen(),
-      const FollowersScreen(),
       const ArtistProfileScreen(),
     ];
 
@@ -65,22 +63,14 @@ class MainScreen extends StatelessWidget {
               label: 'Games',
             ),
             const BottomNavigationBarItem(
-              icon: Icon(Icons.people),
-              label: 'Artists',
+              icon: Icon(Icons.search),
+              label: 'Search',
             ),
             if (authController.isArtist)
               const BottomNavigationBarItem(
                 icon: Icon(Icons.add_circle_outline),
                 label: 'Upload',
               ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.group),
-              label: 'Followers',
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-            ),
           ],
         )),
       ),
