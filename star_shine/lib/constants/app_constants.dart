@@ -109,3 +109,23 @@ final dummyChallenges = [
     'daysLeft': 7
   },
 ];
+
+final dummyArtists = [
+  {'id': '1', 'name': 'Salatiel', 'imageUrl': 'assets/images/artists/salatiel.png', 'genre': 'Afropop'},
+  {'id': '2', 'name': 'Charlotte Dipanda', 'imageUrl': 'assets/images/artists/charllote.png', 'genre': 'Folk'},
+  {'id': '3', 'name': 'Locko', 'imageUrl': 'assets/images/artists/locko.png', 'genre': 'R&B'},
+  {'id': '4', 'name': 'Daphne', 'imageUrl': 'assets/images/artists/daphne.png', 'genre': 'Urban'},
+  {'id': '5', 'name': 'Manu Dibango', 'imageUrl': 'assets/images/artists/dibango.png', 'genre': 'Jazz'},
+  {'id': '6', 'name': 'Mr. Leo', 'imageUrl': 'assets/images/artists/leo.png', 'genre': 'Afrobeats'},
+  {'id': '7', 'name': 'Blanche Bailly', 'imageUrl': 'assets/images/artists/baily.png', 'genre': 'Afropop'},
+  {'id': '8', 'name': 'Stanley Enow', 'imageUrl': 'assets/images/artists/enow.png', 'genre': 'Hip Hop'},
+
+  {'id': '9', 'name': 'Salatiel', 'imageUrl': 'assets/images/artists/salatiel.png', 'genre': 'Afropop'},
+  {'id': '10', 'name': 'Charlotte Dipanda', 'imageUrl': 'assets/images/artists/charllote.png', 'genre': 'Folk'},
+  {'id': '11', 'name': 'Locko', 'imageUrl': 'assets/images/artists/locko.png', 'genre': 'R&B'},
+  {'id': '12', 'name': 'Daphne', 'imageUrl': 'assets/images/artists/daphne.png', 'genre': 'Urban'},
+  {'id': '13', 'name': 'Manu Dibango', 'imageUrl': 'assets/images/artists/dibango.png', 'genre': 'Jazz'},
+  {'id': '14', 'name': 'Mr. Leo', 'imageUrl': 'assets/images/artists/leo.png', 'genre': 'Afrobeats'},
+  {'id': '15', 'name': 'Blanche Bailly', 'imageUrl': 'assets/images/artists/baily.png', 'genre': 'Afropop'},
+  {'id': '16', 'name': 'Stanley Enow', 'imageUrl': 'assets/images/artists/enow.png', 'genre': 'Hip Hop'},
+];

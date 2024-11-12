@@ -11,6 +11,7 @@ import 'package:star_shine/screens/challenges/challenge_creation.dart';
 import 'package:star_shine/screens/fan_home_screen.dart';
 import 'package:star_shine/screens/favourite_artist.dart';
 import 'package:star_shine/screens/main_screen.dart';
+import 'package:star_shine/screens/profile_screen.dart';
 import 'package:star_shine/screens/shorts_screen.dart';
 import 'package:star_shine/screens/splash_screen.dart';
 import 'package:star_shine/screens/user_login.dart';
@@ -31,6 +32,7 @@ class AppRoutes {
   static const String artistLogin = '/artist-login';
   static const String artistNotifications = '/artist-notification';
   static const String artistRegistration = '/artist-registration';
+  static const String artistProfile = '/artist-profile';
   static const String artistSettings = '/artist-settings';
   static const String favoriteArtists = '/favorite-artists';
   static const String userMainScreen = '/users/mains';
@@ -50,6 +52,7 @@ class AppRoutes {
       fanHome: (context) => const FanHomeScreen(),
       artistHome: (context) => const ArtistHomeScreen(),
       artistSettings: (context) => const ArtistSettingsScreen(),
+      artistProfile: (context) => const ArtistProfileScreen(),
       artistNotifications: (context) => const ArtistNotificationScreen(),
       userLogin: (context) => const UserLogin(),
       createChallengeScreen: (context) => const CreateChallengeScreen(),
