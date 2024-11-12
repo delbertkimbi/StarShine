@@ -85,7 +85,7 @@ class ArtistSignUp extends StatelessWidget {
             TextField(
               controller: nameController,
               decoration: const InputDecoration(
-                labelText: 'Artist/Band Name',
+                labelText: 'Artist|Band Name',
                 border: OutlineInputBorder(),
               ),
             ),
