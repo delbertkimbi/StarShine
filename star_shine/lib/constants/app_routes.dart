@@ -55,7 +55,7 @@ class AppRoutes {
       createChallengeScreen: (context) => const CreateChallengeScreen(),
       favoriteArtists: (context) => const FavoriteArtists(),
       userMainScreen: (context) => const MainScreen(),
-      shorts: (context) => const ShortsScreen(),
+      shorts: (context) => const ShortsScreen(videoId: '',),
       game: (context) => const GameScreen(),
     };
   }
