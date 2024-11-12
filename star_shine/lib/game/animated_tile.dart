@@ -7,11 +7,13 @@ import 'package:star_shine/game/tile_model.dart';
 class AnimatedTile extends StatelessWidget {
   final TileModel tile;
   final VoidCallback onTap;
+  final Gradient gradient;
 
   const AnimatedTile({
     super.key,
     required this.tile,
     required this.onTap,
+    required this.gradient,
   });
 
   @override
@@ -51,11 +53,7 @@ class AnimatedTile extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.all(1),
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: _getGradientColors(),
-                  ),
+                  gradient: gradient,
                   borderRadius: BorderRadius.circular(7),
                   border: Border.all(
                     color: Colors.white.withOpacity(0.2),
