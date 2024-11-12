@@ -38,7 +38,7 @@ class VideoData {
 }
 
 class ShortsScreen extends StatefulWidget {
-  const ShortsScreen({super.key});
+  const ShortsScreen({super.key, required String videoId});
 
   @override
   _ShortsScreenState createState() => _ShortsScreenState();
