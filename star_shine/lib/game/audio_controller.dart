@@ -1,6 +1,7 @@
 // lib/features/piano_tiles/controllers/audio_controller.dart
 import 'package:audioplayers/audioplayers.dart' as player;
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/foundation.dart';
 
 class AudioController {
   final player.AudioPlayer _backgroundPlayer = player.AudioPlayer();
@@ -17,7 +18,9 @@ class AudioController {
       await _backgroundPlayer.play(AssetSource('audio/amen.mp3'));
       await _backgroundPlayer.setReleaseMode(ReleaseMode.loop);
     } catch (e) {
-      print('Error playing background music: $e');
+      if (kDebugMode) {
+        print('Error playing background music: $e');
+      }
     }
   }
 
@@ -25,7 +28,9 @@ class AudioController {
     try {
       await _hitSoundPlayer.play(AssetSource('hit_sound.mp3')); // Add your hit sound file
     } catch (e) {
-      print('Error playing hit sound: $e');
+      if (kDebugMode) {
+        print('Error playing hit sound: $e');
+      }
     }
   }
 
