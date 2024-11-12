@@ -105,14 +105,14 @@ class AnimatedTile extends StatelessWidget {
         : baseColor.withOpacity(0.3);
   }
 
-  List<Color> _getGradientColors() {
-    final baseColor = _getTileColor();
-    return [
-      baseColor.withOpacity(0.9),
-      baseColor,
-      baseColor.withOpacity(0.9),
-    ];
-  }
+  // List<Color> _getGradientColors() {
+  //   final baseColor = _getTileColor();
+  //   return [
+  //     baseColor.withOpacity(0.9),
+  //     baseColor,
+  //     baseColor.withOpacity(0.9),
+  //   ];
+  // }
 
   Widget _buildTileContent() {
     switch (tile.status) {

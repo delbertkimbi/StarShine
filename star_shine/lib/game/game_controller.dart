@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:star_shine/game/audio_controller.dart';
 import 'package:star_shine/game/enums.dart' as game_enums;
@@ -43,7 +44,9 @@ class GameController extends GetxController {
     try {
       await audioController.initAudio();
     } catch (e) {
-      print('Error loading audio: $e');
+      if (kDebugMode) {
+        print('Error loading audio: $e');
+      }
     }
   }
   
@@ -126,8 +129,8 @@ class GameController extends GetxController {
     if (gameState.value != game_enums.GameState.playing) return;
     
     final screenHeight = Get.height;
-    final tileModel = tile as TileModel1;
-    
+    // final tileModel = tile as TileModel1;
+
     // Check if tap is within the visible part of the tile
     if (!tile.isHit && 
         tile.yPosition > 0 && 

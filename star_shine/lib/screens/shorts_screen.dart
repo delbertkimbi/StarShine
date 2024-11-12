@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:star_shine/widgets/action_sidebar.dart';
 import 'package:star_shine/widgets/long_press_menu.dart';
@@ -101,7 +102,9 @@ class _ShortsScreenState extends State<ShortsScreen> {
           _setupVideoListeners(currentVideo.controller!);
         }
       } catch (e) {
-        print('Error initializing video: $e');
+        if (kDebugMode) {
+          print('Error initializing video: $e');
+        }
         // Handle error - maybe show error state or skip to next video
         if (mounted) {
           setState(() {
@@ -119,7 +122,9 @@ class _ShortsScreenState extends State<ShortsScreen> {
           nextVideo.controller = await nextVideo.initializeController();
           await nextVideo.controller!.initialize();
         } catch (e) {
-          print('Error pre-initializing next video: $e');
+          if (kDebugMode) {
+            print('Error pre-initializing next video: $e');
+          }
         }
       }
     }

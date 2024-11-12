@@ -159,7 +159,7 @@ class ArtistSignUp extends StatelessWidget {
             const SizedBox(height: 16),
             Row(
               children: [
-                Text(
+                const Text(
                   "Already have an account? ",
                   style: TextStyle(color: Colors.black87),
                 ),

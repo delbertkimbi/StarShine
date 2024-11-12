@@ -20,7 +20,7 @@ class MainScreen extends StatelessWidget {
       const FeedScreen(),
       const ShortsScreen(videoId: '',),
       const GameScreen(),
-      ArtistScreen(),
+      const ArtistScreen(),
       if (authController.isArtist) const UploadScreen(),
       const ArtistProfileScreen(),
     ];
