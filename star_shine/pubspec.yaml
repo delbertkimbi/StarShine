@@ -84,6 +84,7 @@ flutter:
     # - assets/images/background.jpg
 
     - assets/images/artists/
+    - assets/videos/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-ima|ges

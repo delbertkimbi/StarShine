@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:star_shine/widgets/action_sidebar.dart';
 import 'package:star_shine/widgets/long_press_menu.dart';
@@ -8,6 +8,34 @@ import 'package:star_shine/widgets/next_video_suggestion.dart';
 import 'package:star_shine/widgets/user_profile_overlay.dart';
 import 'package:star_shine/widgets/video_controls.dart';
 import 'package:video_player/video_player.dart';
+
+enum VideoSourceType {
+  asset,
+  file,
+}
+
+class VideoData {
+  final String path;
+  final VideoSourceType sourceType;
+  final String title;
+  VideoPlayerController? controller;
+  bool isInitialized = false;
+
+  VideoData({
+    required this.path,
+    required this.sourceType,
+    required this.title,
+  });
+
+  Future<VideoPlayerController> initializeController() async {
+    switch (sourceType) {
+      case VideoSourceType.asset:
+        return VideoPlayerController.asset(path);
+      case VideoSourceType.file:
+        return VideoPlayerController.file(File(path));
+    }
+  }
+}
 
 class ShortsScreen extends StatefulWidget {
   const ShortsScreen({super.key});
@@ -18,42 +46,136 @@ class ShortsScreen extends StatefulWidget {
 
 class _ShortsScreenState extends State<ShortsScreen> {
   late PageController _pageController;
-  late VideoPlayerController _videoController;
   bool _isLongPressMenuVisible = false;
   bool _isLyricsVisible = false;
   bool _showNextVideoSuggestion = false;
   Timer? _longPressTimer;
+  int _currentPageIndex = 0;
+  bool _isPlaying = true;
+
+  // List of video data combining assets and local files
+  final List<VideoData> _videos = [
+    // Videos from assets
+    VideoData(
+      path: 'assets/videos/ko.mp4',
+      sourceType: VideoSourceType.asset,
+      title: 'Ko C',
+    ),
+    VideoData(
+      path: 'assets/videos/video2.mp4',
+      sourceType: VideoSourceType.asset,
+      title: 'Asset Video 2',
+    ),
+    // Videos from local storage
+    VideoData(
+      path: '/storage/emulated/0/DCIM/Camera/video1.mp4', // Android path example
+      sourceType: VideoSourceType.file,
+      title: 'Local Video 1',
+    ),
+    VideoData(
+      path: '/Users/username/Videos/video2.mp4', // iOS/desktop path example
+      sourceType: VideoSourceType.file,
+      title: 'Local Video 2',
+    ),
+  ];
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
-    _initializeVideo();
+    _initializeCurrentVideo();
   }
 
-  void _initializeVideo() {
-    // Initialize with dummy video URL - replace with actual video
-    _videoController = VideoPlayerController.network(
-      'file:///Users/funwikelseandohnwi/Downloads/Alicia%20Keys%20-%20Try%20Sleeping%20with%20a%20Broken%20Heart%20(Official%20Video).mp4',
-    )..initialize().then((_) {
-      setState(() {});
-      _videoController.play();
-      _setupVideoListeners();
-    });
+  Future<void> _initializeCurrentVideo() async {
+    final currentVideo = _videos[_currentPageIndex];
+    if (currentVideo.controller == null) {
+      try {
+        currentVideo.controller = await currentVideo.initializeController();
+        await currentVideo.controller!.initialize();
+
+        if (mounted) {
+          setState(() {
+            currentVideo.isInitialized = true;
+          });
+          currentVideo.controller?.play();
+          _setupVideoListeners(currentVideo.controller!);
+        }
+      } catch (e) {
+        print('Error initializing video: $e');
+        // Handle error - maybe show error state or skip to next video
+        if (mounted) {
+          setState(() {
+            currentVideo.isInitialized = false;
+          });
+        }
+      }
+    }
+
+    // Pre-initialize the next video
+    if (_currentPageIndex < _videos.length - 1) {
+      final nextVideo = _videos[_currentPageIndex + 1];
+      if (nextVideo.controller == null) {
+        try {
+          nextVideo.controller = await nextVideo.initializeController();
+          await nextVideo.controller!.initialize();
+        } catch (e) {
+          print('Error pre-initializing next video: $e');
+        }
+      }
+    }
   }
 
-  void _setupVideoListeners() {
-    _videoController.addListener(() {
-      final Duration position = _videoController.value.position;
-      final Duration duration = _videoController.value.duration;
+  void _setupVideoListeners(VideoPlayerController controller) {
+    controller.addListener(() {
+      if (!mounted) return;
 
-      // Show next video suggestion when current video is almost complete
+      final Duration position = controller.value.position;
+      final Duration duration = controller.value.duration;
+
       if (duration.inSeconds - position.inSeconds <= 3 && !_showNextVideoSuggestion) {
         setState(() {
           _showNextVideoSuggestion = true;
         });
       }
     });
+  }
+
+  Future<void> _onPageChanged(int index) async {
+    // Pause the previous video
+    if (_currentPageIndex < _videos.length) {
+      _videos[_currentPageIndex].controller?.pause();
+    }
+
+    setState(() {
+      _currentPageIndex = index;
+      _isPlaying = true;
+      _showNextVideoSuggestion = false;
+    });
+
+    // Initialize and play the current video
+    await _initializeCurrentVideo();
+    _videos[_currentPageIndex].controller?.play();
+
+    // Cleanup old videos
+    if (index > 1) {
+      _videos[index - 2].controller?.dispose();
+      _videos[index - 2].controller = null;
+      _videos[index - 2].isInitialized = false;
+    }
+  }
+
+  void _togglePlayPause() {
+    final currentVideo = _videos[_currentPageIndex];
+    if (currentVideo.controller != null && currentVideo.isInitialized) {
+      setState(() {
+        _isPlaying = !_isPlaying;
+        if (_isPlaying) {
+          currentVideo.controller?.play();
+        } else {
+          currentVideo.controller?.pause();
+        }
+      });
+    }
   }
 
   void _startLongPress() {
@@ -74,36 +196,81 @@ class _ShortsScreenState extends State<ShortsScreen> {
       body: GestureDetector(
         onLongPressStart: (_) => _startLongPress(),
         onLongPressEnd: (_) => _endLongPress(),
+        onTap: _togglePlayPause,
         child: Stack(
           children: [
-            // Video PageView
             PageView.builder(
               scrollDirection: Axis.vertical,
               controller: _pageController,
+              onPageChanged: _onPageChanged,
+              itemCount: _videos.length,
               itemBuilder: (context, index) {
+                final video = _videos[index];
                 return Stack(
                   children: [
-                    // Video Player
-                    SizedBox.expand(
-                      child: FittedBox(
-                        fit: BoxFit.cover,
-                        child: SizedBox(
-                          width: _videoController.value.size.width,
-                          height: _videoController.value.size.height,
-                          child: VideoPlayer(_videoController),
+                    if (video.controller != null && video.isInitialized)
+                      SizedBox.expand(
+                        child: FittedBox(
+                          fit: BoxFit.cover,
+                          child: SizedBox(
+                            width: video.controller!.value.size.width,
+                            height: video.controller!.value.size.height,
+                            child: VideoPlayer(video.controller!),
+                          ),
                         ),
                       ),
-                    ),
 
-                    // Video Progress Bar
-                    Positioned(
-                      bottom: 85,
-                      left: 0,
-                      right: 0,
-                      child: VideoProgressBar(controller: _videoController),
-                    ),
+                    // Loading indicator
+                    if (!video.isInitialized)
+                      const Center(
+                        child: CircularProgressIndicator(),
+                      ),
 
-                    // Action Sidebar
+                    // Play/Pause Indicator
+                    if (!_isPlaying && video.isInitialized)
+                      Center(
+                        child: Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.5),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.play_arrow,
+                            color: Colors.white,
+                            size: 48,
+                          ),
+                        ),
+                      ),
+
+                    // Error indicator
+                    if (!video.isInitialized && video.controller?.value.hasError == true)
+                      Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.error_outline,
+                              color: Colors.red,
+                              size: 48,
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              'Error loading video',
+                              style: TextStyle(color: Colors.red[300]),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                    if (video.isInitialized)
+                      Positioned(
+                        bottom: 85,
+                        left: 0,
+                        right: 0,
+                        child: VideoProgressBar(controller: video.controller!),
+                      ),
+
                     Positioned(
                       right: 8,
                       bottom: 100,
@@ -116,18 +283,15 @@ class _ShortsScreenState extends State<ShortsScreen> {
                       ),
                     ),
 
-                    // User Profile Overlay
                     const Positioned(
                       left: 8,
                       bottom: 20,
                       child: UserProfileOverlay(),
                     ),
 
-                    // Lyrics Overlay (if visible)
                     if (_isLyricsVisible)
                       const LyricsOverlay(),
 
-                    // Next Video Suggestion
                     if (_showNextVideoSuggestion)
                       NextVideoSuggestion(
                         onDismiss: () {
@@ -141,7 +305,6 @@ class _ShortsScreenState extends State<ShortsScreen> {
               },
             ),
 
-            // Long Press Menu
             if (_isLongPressMenuVisible)
               LongPressMenu(
                 onClose: () {
@@ -158,10 +321,11 @@ class _ShortsScreenState extends State<ShortsScreen> {
 
   @override
   void dispose() {
-    _videoController.dispose();
+    for (var video in _videos) {
+      video.controller?.dispose();
+    }
     _pageController.dispose();
     _longPressTimer?.cancel();
     super.dispose();
   }
 }
-
