@@ -11,6 +11,11 @@ abstract class TileModel {
   set status(TileStatus value);
   bool get isHit;
   set isHit(bool value);
+  final bool isSpecial;
+
+  TileModel({
+    this.isSpecial = false,
+  });
 }
 
 class GameStats {

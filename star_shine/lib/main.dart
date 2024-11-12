@@ -6,9 +6,13 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:star_shine/constants/app_constants.dart';
 import 'package:star_shine/constants/app_routes.dart';
+
+import 'package:star_shine/game/game_controller.dart';
+import 'package:star_shine/game/audio_controller.dart';
+import 'package:star_shine/game/game_screen.dart';
+import 'package:star_shine/screens/splash_screen.dart';
 import 'package:star_shine/game/audio_controller.dart';
 import 'package:star_shine/game/game_controller.dart';
-
 import 'firebase_options.dart';
 
 void main() async{
@@ -16,7 +20,10 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  // Initialize controllers
+  final audioController = AudioController();
+  Get.put(audioController);
+  Get.put(GameController(audioController: Get.find()));
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -24,10 +31,7 @@ void main() async{
     ),
   );
   runApp(const MyApp());
-  // Initialize controllers
-  final audioController = AudioController();
-  Get.put(audioController);
-  Get.put(GameController(audioController: Get.find()));
+
 }
 
 class MyApp extends StatelessWidget {
@@ -93,6 +97,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+
+      home: const SplashScreen(),
       initialRoute: AppRoutes.splash,
       routes: AppRoutes.getRoutes(),
     );

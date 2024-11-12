@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+
 import 'package:get/get.dart';
 import 'package:star_shine/game/audio_controller.dart';
 import 'package:star_shine/game/enums.dart' as game_enums;
@@ -154,19 +155,19 @@ class GameController extends GetxController {
     audioController.pauseBackgroundMusic();
   }
 
-  // void pauseGame() {
-  //   if (gameState.value == GameState.playing) {
-  //     gameState.value = GameState.paused;
-  //     // Add any pause logic here (e.g., stopping timers)
-  //   }
-  // }
+  void pauseGame() {
+    if (gameState.value == game_enums.GameState.playing) {
+      gameState.value = game_enums.GameState.paused;
+      // Add any pause logic here (e.g., stopping timers)
+    }
+  }
 
-  // void resumeGame() {
-  //   if (gameState.value == GameState.paused) {
-  //     gameState.value = GameState.playing;
-  //     // Add any resume logic here
-  //   }
-  // }
+  void resumeGame() {
+    if (gameState.value == game_enums.GameState.paused) {
+      gameState.value = game_enums.GameState.playing;
+      // Add any resume logic here
+    }
+  }
 
   @override
   void onClose() {
@@ -191,6 +192,7 @@ class TileModel1 implements TileModel {
   @override double get yPosition => _yPosition;
   @override set yPosition(double value) => _yPosition = value;
   @override bool isHit = false;
+  @override bool isSpecial = false;
   
   TileModel1({
     required this.id,
@@ -201,6 +203,7 @@ class TileModel1 implements TileModel {
     required this.length,
     required this.speed,
     this.isHit = false,
+    this.isSpecial = false,
   }) : _yPosition = yPosition,
        _status = status;
 }

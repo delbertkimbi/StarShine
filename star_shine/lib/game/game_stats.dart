@@ -6,6 +6,7 @@ class GameStats {
   final int perfectHits;
   final double accuracy;
   final GameLevel level;
+  final int levelProgress;
 
   GameStats({
     this.currentScore = 0,
@@ -13,6 +14,7 @@ class GameStats {
     this.perfectHits = 0,
     this.accuracy = 0.0,
     this.level = GameLevel.normal,
+    this.levelProgress = 3,
   });
 
   GameStats copyWith({
@@ -21,6 +23,7 @@ class GameStats {
     int? perfectHits,
     double? accuracy,
     GameLevel? level,
+    int? levelProgress,
   }) {
     return GameStats(
       currentScore: currentScore ?? this.currentScore,
@@ -28,6 +31,7 @@ class GameStats {
       perfectHits: perfectHits ?? this.perfectHits,
       accuracy: accuracy ?? this.accuracy,
       level: level ?? this.level,
+      levelProgress: levelProgress ?? this.levelProgress,
     );
   }
 }
