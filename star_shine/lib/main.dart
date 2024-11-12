@@ -8,6 +8,7 @@ import 'package:star_shine/constants/app_routes.dart';
 import 'package:star_shine/game/game_controller.dart';
 import 'package:star_shine/game/audio_controller.dart';
 import 'package:star_shine/game/game_screen.dart';
+import 'package:star_shine/screens/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -89,7 +90,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: GameScreen(),
+      home: const SplashScreen(),
       initialRoute: AppRoutes.splash,
       routes: AppRoutes.getRoutes(),
     );
