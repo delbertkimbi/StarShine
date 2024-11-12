@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 class AuthController extends GetxController {
   final _isArtist = false.obs;
   final _isLoggedIn = false.obs;
+  final isPasswordVisible = false.obs;
 
   bool get isArtist => _isArtist.value;
   bool get isLoggedIn => _isLoggedIn.value;
@@ -18,5 +19,9 @@ class AuthController extends GetxController {
 
   void logout() {
     _isLoggedIn.value = false;
+  }
+
+  void togglePasswordVisibility() {
+    isPasswordVisible.value = !isPasswordVisible.value;
   }
 }
