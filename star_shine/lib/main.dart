@@ -10,20 +10,11 @@ import 'package:star_shine/game/game_controller.dart';
 import 'package:star_shine/game/audio_controller.dart';
 import 'package:star_shine/game/game_screen.dart';
 import 'package:star_shine/game/pages/game_page.dart';
-
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  
-  // Initialize controllers
-  final audioController = AudioController();
-  Get.put(audioController);
-  Get.put(GameController(audioController: Get.find()));
-  
-
 import 'package:firebase_core/firebase_core.dart';
+import 'package:star_shine/screens/splash_screen.dart';
 import 'firebase_options.dart';
 
-void main() async {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -36,6 +27,12 @@ void main() async {
     ),
   );
   runApp(const MyApp());
+  // Initialize controllers
+  final audioController = AudioController();
+  Get.put(audioController);
+  Get.put(GameController(audioController: Get.find()));
+
+
 }
 
 class MyApp extends StatelessWidget {
@@ -102,10 +99,12 @@ class MyApp extends StatelessWidget {
         ),
       ),
 
-      home: SlashScreen(),
+      home:GameScreen(),
 
       initialRoute: AppRoutes.splash,
       routes: AppRoutes.getRoutes(),
     );
   }
 }
+
+

@@ -1,7 +1,6 @@
 // lib/features/piano_tiles/controllers/audio_controller.dart
 import 'package:audioplayers/audioplayers.dart' as player;
 import 'package:audioplayers/audioplayers.dart';
-import 'package:get/get.dart';
 
 class AudioController {
   final player.AudioPlayer _backgroundPlayer = player.AudioPlayer();

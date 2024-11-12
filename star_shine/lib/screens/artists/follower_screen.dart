@@ -17,7 +17,6 @@ class FollowersScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Followers'),
-        backgroundColor: Colors.black,
       ),
       body: ListView.builder(
         itemCount: followers.length,
