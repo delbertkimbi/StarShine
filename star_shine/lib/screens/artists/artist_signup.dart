@@ -112,7 +112,7 @@ class _ArtistSignUpState extends State<ArtistSignUp> with SingleTickerProviderSt
                         child: CircleAvatar(
                           radius: 50,
                           backgroundColor: Colors.grey[300],
-                          child: const Icon(Icons.person, size: 50, color: Colors.black26),
+                          child: const Icon(Icons.person, size: 50, color: Colors.black),
                         ),
                       ),
                      const  Positioned(
@@ -140,7 +140,6 @@ class _ArtistSignUpState extends State<ArtistSignUp> with SingleTickerProviderSt
                   icon: Icons.email,
                   keyboardType: TextInputType.emailAddress,
                 ),
-
                 const SizedBox(height: 16),
                 _buildCustomTextField(
                   controller: passwordController,
@@ -171,30 +170,6 @@ class _ArtistSignUpState extends State<ArtistSignUp> with SingleTickerProviderSt
                       selectedGenre = newValue;
                     }
                   },
-
-                filled: true,
-                fillColor: Colors.white,
-              ),
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () {
-                authController.setUserType(true);
-                authController.login();
-                Get.offAllNamed('/artist-home');
-              },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-              ),
-              child: const Text('Sign Up'),
-            ),
-            const SizedBox(height: 16),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                const Text(
-                  "Already have an account? ",
-                  style: TextStyle(color: Colors.black87),
                 ),
                 const SizedBox(height: 24),
                 TextField(
