@@ -1,5 +1,6 @@
 // routes.dart
 import 'package:flutter/material.dart';
+import 'package:star_shine/game/game_screen.dart';
 import 'package:star_shine/screens/artists/artist_homescreen.dart';
 import 'package:star_shine/screens/artists/artist_landing.dart';
 import 'package:star_shine/screens/artists/artist_login_screen.dart';
@@ -35,6 +36,8 @@ class AppRoutes {
   static const String userMainScreen = '/users/mains';
   static const String shorts = '/shorts';
 
+  static const String game = '/game';
+
   static Map<String, WidgetBuilder> getRoutes() {
     return {
       splash: (context) => const SplashScreen(), // You'll need to create this
@@ -53,6 +56,7 @@ class AppRoutes {
       favoriteArtists: (context) => const FavoriteArtists(),
       userMainScreen: (context) => const MainScreen(),
       shorts: (context) => const ShortsScreen(),
+      game: (context) => const GameScreen(),
     };
   }
 }

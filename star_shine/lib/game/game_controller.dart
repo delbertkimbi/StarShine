@@ -1,6 +1,7 @@
-import 'package:get/get.dart';
 import 'dart:async';
 import 'dart:math';
+
+import 'package:get/get.dart';
 import 'package:star_shine/game/audio_controller.dart';
 import 'package:star_shine/game/enums.dart' as game_enums;
 import 'package:star_shine/game/enums.dart';
@@ -181,8 +182,8 @@ class TileModel1 implements TileModel {
   @override final int id;
   @override final int column;
   @override double position;
-  @override TileStatus _status;
-  @override double _yPosition;
+  TileStatus _status;
+  double _yPosition;
   final double length; // Tile length in pixels
   final double speed; // Pixels per second
   

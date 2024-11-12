@@ -17,7 +17,6 @@ class ArtistsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('All Artists'),
-        backgroundColor: Colors.black,
       ),
       body: ListView.builder(
         itemCount: artists.length,
@@ -25,7 +24,7 @@ class ArtistsScreen extends StatelessWidget {
           return ListTile(
             leading: const CircleAvatar(
               backgroundImage: NetworkImage(
-                  'https://placekitten.com/200/200'
+                  'https://www.shutterstock.com/image-photo/dark-green-leaf-texture-natural-260nw-2509369253.jpg'
               ), // Replace with artist profile images
             ),
             title: Text(artists[index]),

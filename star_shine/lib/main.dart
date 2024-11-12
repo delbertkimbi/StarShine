@@ -1,23 +1,29 @@
 // lib/main.dart
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:star_shine/constants/app_constants.dart';
 import 'package:star_shine/constants/app_routes.dart';
+
 import 'package:star_shine/game/game_controller.dart';
 import 'package:star_shine/game/audio_controller.dart';
 import 'package:star_shine/game/game_screen.dart';
 import 'package:star_shine/screens/splash_screen.dart';
+import 'package:star_shine/game/audio_controller.dart';
+import 'package:star_shine/game/game_controller.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   // Initialize controllers
   final audioController = AudioController();
   Get.put(audioController);
   Get.put(GameController(audioController: Get.find()));
-  
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -25,6 +31,7 @@ void main() {
     ),
   );
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
@@ -90,9 +97,12 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+
       home: const SplashScreen(),
       initialRoute: AppRoutes.splash,
       routes: AppRoutes.getRoutes(),
     );
   }
 }
+
+
