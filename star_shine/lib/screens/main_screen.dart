@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:star_shine/controllers/auth_controller.dart';
+import 'package:star_shine/game/game_screen.dart';
 import 'package:star_shine/screens/artists/artist_show.dart';
 import 'package:star_shine/screens/artists/follower_screen.dart';
 import 'package:star_shine/screens/feed_screen.dart';
@@ -19,6 +20,7 @@ class MainScreen extends StatelessWidget {
     final screens = [
       const FeedScreen(),
       const ShortsScreen(),
+      const GameScreen(),
       const ArtistsScreen(),
       if (authController.isArtist) const UploadScreen(),
       const FollowersScreen(),
@@ -57,6 +59,10 @@ class MainScreen extends StatelessWidget {
             const BottomNavigationBarItem(
               icon: Icon(Icons.video_library),
               label: 'Shorts',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.gamepad),
+              label: 'Games',
             ),
             const BottomNavigationBarItem(
               icon: Icon(Icons.people),
